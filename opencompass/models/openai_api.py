@@ -472,17 +472,25 @@ class OpenAISDK(OpenAI):
                  query_per_second: int = 1,
                  rpm_verbose: bool = False,
                  retry: int = 2,
-                 key: str | List[str] = 'ENV',
-                 org: str | List[str] | None = None,
-                 meta_template: Dict | None = None,
+                 #  key: str | List[str] = 'ENV',
+                 #  org: str | List[str] | None = None,
+                 #  meta_template: Dict | None = None,
+                 key: Union[str, List[str]] = 'ENV',
+                 org: Union[str, List[str], None] = None,
+                 meta_template: Union[Dict, None] = None,
                  openai_api_base: str = OPENAI_API_BASE,
                  openai_proxy_url: Optional[str] = None,
                  mode: str = 'none',
-                 logprobs: bool | None = False,
-                 top_logprobs: int | None = None,
-                 temperature: float | None = None,
-                 tokenizer_path: str | None = None,
-                 extra_body: Dict | None = None,
+                 #  logprobs: bool | None = False,
+                 #  top_logprobs: int | None = None,
+                 #  temperature: float | None = None,
+                 #  tokenizer_path: str | None = None,
+                 #  extra_body: Dict | None = None,
+                 logprobs: Union[bool, None] = False,
+                 top_logprobs: Union[int, None] = None,
+                 temperature: Union[float, None] = None,
+                 tokenizer_path: Union[str, None] = None,
+                 extra_body: Union[Dict, None] = None,
                  max_completion_tokens: int = 16384,
                  verbose: bool = False):
         super().__init__(path,
@@ -520,7 +528,7 @@ class OpenAISDK(OpenAI):
         if self.verbose:
             self.logger.info(f'Used openai_client: {self.openai_client}')
 
-    def _generate(self, input: PromptList | str, max_out_len: int,
+    def _generate(self, input: Union[PromptList, str], max_out_len: int,
                   temperature: float) -> str:
         assert isinstance(input, (str, PromptList))
 
